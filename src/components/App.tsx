@@ -1,8 +1,11 @@
 import React from 'react';
+import Weather from './widgets/weather';
 
-function App() {
+const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Weather/>
+    </div>
   );
 }
 
