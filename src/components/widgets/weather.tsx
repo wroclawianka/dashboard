@@ -7,10 +7,15 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
+import Sun from './../../assets/weather_icons/sun.svg'
+
 import { fetchWeather } from '../../actions/index'
 
 const useStyles = makeStyles(() =>
     createStyles({
+        root: {
+            color: '#02005c'
+        },
         title: {
             textAlign: 'left',
         },
@@ -19,12 +24,16 @@ const useStyles = makeStyles(() =>
         },
         detailInfo: {
             textAlign: 'left',
+            margin: 'auto',
         },
         tempDetails: {
             borderTop: '1px solid #d0d0d0',
             marginTop: '10px',
             paddingTop: '10px',
         },
+        verticallyCentered: {
+            margin: 'auto 0',
+        }
     }),
 );
 
@@ -39,10 +48,10 @@ const Weather = () => {
     if (weather) {
         console.log(weather)
         return (
-            <Box>
+            <Box className={classes.root}>
                 <Grid container spacing={0} justify="space-evenly">
                     <Grid item container justify="space-evenly" xs={12}>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                             <Grid item className={classes.title}>
                                 <Typography variant="h5">
                                     {weather.name}
@@ -51,14 +60,19 @@ const Weather = () => {
                                     {weather.weather[0].main}
                                 </Typography>
                             </Grid>
-                            <Grid item className={classes.mainInfo}>
-                                <Typography variant="h4">
-                                    {/* {weather.main.temp} */}
-                                    {`16 °C`}
-                                </Typography>
+                            <Grid item className={classes.mainInfo} container direction="row">
+                                <div>
+                                    <img src={Sun} width='100px' alt="Sun" />
+                                </div>
+                                <div className={classes.verticallyCentered}>
+                                    <Typography variant="h4">
+                                        {/* {weather.main.temp} */}
+                                        {`16 °C`}
+                                    </Typography>
+                                </div>
                             </Grid>
                         </Grid>
-                        <Grid item xs={4} className={classes.detailInfo}>
+                        <Grid item xs={5} className={classes.detailInfo}>
                             <Typography variant="subtitle1">
                                 <p>{`Humidity: 36 %`}</p>
                                 <p>{`Cloudness: 0%`}</p>
