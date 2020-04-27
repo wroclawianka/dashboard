@@ -1,10 +1,10 @@
 export default class TemperatureDetails {
-    min: string;
-    max: string;
-    feelsLike: string;
+    min: number;
+    max: number;
+    feelsLike: number;
     constructor(min: string, max: string, feelsLike: string) {
-        this.min = min;
-        this.max = max;
-        this.feelsLike = feelsLike;
+        this.min = parseInt(min);
+        this.max = parseInt(max);
+        this.feelsLike = parseInt(feelsLike);
     }
 }

@@ -65,7 +65,7 @@ const Weather = () => {
                                 </div>
                                 <div className={classes.verticallyCentered}>
                                     <Typography variant="h4">
-                                        {weather.main.temp}
+                                        {`${weather.main.temp} °C`}
                                     </Typography>
                                 </div>
                             </Grid>
@@ -81,17 +81,17 @@ const Weather = () => {
                     <Grid item container direction="row" justify="space-evenly" className={classes.tempDetails}>
                         <Grid>
                             <Typography variant="overline" display="block" gutterBottom>
-                                {`Min ${weather.temperature.min}`}
+                                {`Min ${weather.temperature.min} °C`}
                             </Typography>
                         </Grid>
                         <Grid>
                             <Typography variant="overline" display="block" gutterBottom>
-                                {`Max ${weather.temperature.max}`}
+                                {`Max ${weather.temperature.max} °C`}
                             </Typography>
                         </Grid>
                         <Grid>
                             <Typography variant="overline" display="block" gutterBottom>
-                                {`Feels like ${weather.temperature.feelsLike}`}
+                                {`Feels like ${weather.temperature.feelsLike} °C`}
                             </Typography>
                         </Grid>
                     </Grid>
