@@ -54,10 +54,10 @@ const Weather = () => {
                         <Grid item xs={7}>
                             <Grid item className={classes.title}>
                                 <Typography variant="h5">
-                                    {weather.name}
+                                    {weather.main.location}
                                 </Typography>
                                 <Typography variant="subtitle1">
-                                    {weather.weather[0].main}
+                                    {weather.main.description}
                                 </Typography>
                             </Grid>
                             <Grid item className={classes.mainInfo} container direction="row">
@@ -66,24 +66,17 @@ const Weather = () => {
                                 </div>
                                 <div className={classes.verticallyCentered}>
                                     <Typography variant="h4">
-                                        {/* {weather.main.temp} */}
-                                        {`16 °C`}
+                                        {weather.main.temp}
                                     </Typography>
                                 </div>
                             </Grid>
                         </Grid>
                         <Grid item xs={5} className={classes.detailInfo}>
                             <Typography variant="subtitle1">
-                                <p>{`Humidity: 36 %`}</p>
-                                <p>{`Cloudness: 0%`}</p>
-                                <p>{`Wind: 2.1 m/sec`}</p>
+                                <p>{`Humidity: ${weather.details.humidity}%`}</p>
+                                <p>{`Cloudness: ${weather.details.cloudiness}%`}</p>
+                                <p>{`Wind: ${weather.details.wind} m/sec`}</p>
                             </Typography>
-                            {/* <p>{`Humidity: ${weather.main.humidity}`}</p>
-                            <p>{`Cloudness: ${weather.clouds.all}`}</p>
-                            <p>{`Wind: ${weather.wind.speed}`}</p> */}
-                            {/* <p>{`Humidity: 36 %`}</p>
-                            <p>{`Cloudness: 0%`}</p>
-                            <p>{`Wind: 2.1 m/sec`}</p> */}
                         </Grid>
                     </Grid>
 
@@ -91,20 +84,17 @@ const Weather = () => {
                     <Grid item container direction="row" justify="space-evenly" className={classes.tempDetails}>
                         <Grid>
                             <Typography variant="overline" display="block" gutterBottom>
-                                {`Min: 15 °C`}
-                                {/* {`Min ${weather.main.temp_min}`} */}
+                                {`Min ${weather.temperature.min}`}
                             </Typography>
                         </Grid>
                         <Grid>
                             <Typography variant="overline" display="block" gutterBottom>
-                                {`Max: 19 °C`}
-                                {/* {`Max ${weather.main.temp_max}`} */}
+                                {`Max ${weather.temperature.max}`}
                             </Typography>
                         </Grid>
                         <Grid>
                             <Typography variant="overline" display="block" gutterBottom>
-                                {`Feels like: 15 °C`}
-                                {/* {`Feels like ${weather.main.feels_like}`} */}
+                                {`Feels like ${weather.temperature.feelsLike}`}
                             </Typography>
                         </Grid>
                     </Grid>
