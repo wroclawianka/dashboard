@@ -46,7 +46,6 @@ const Weather = () => {
     }, [])
 
     if (weather) {
-        console.log(weather)
         return (
             <Box className={classes.root}>
                 <Grid container spacing={0} justify="space-evenly">
@@ -79,8 +78,6 @@ const Weather = () => {
                             </Typography>
                         </Grid>
                     </Grid>
-
-
                     <Grid item container direction="row" justify="space-evenly" className={classes.tempDetails}>
                         <Grid>
                             <Typography variant="overline" display="block" gutterBottom>
