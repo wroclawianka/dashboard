@@ -5,9 +5,6 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-
-import Sun from './../../assets/weather_icons/sun.svg'
 
 import { fetchWeather } from '../../actions/index'
 
@@ -61,7 +58,7 @@ const Weather = () => {
                             </Grid>
                             <Grid item className={classes.mainInfo} container direction="row">
                                 <div>
-                                    <img src={Sun} width='100px' alt="Sun" />
+                                    <img src={`./assets/weather_icons/${weather.main.icon}.svg`} width='100px' alt="Sun" />
                                 </div>
                                 <div className={classes.verticallyCentered}>
                                     <Typography variant="h4">
