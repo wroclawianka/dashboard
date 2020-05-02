@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
@@ -38,66 +38,73 @@ const Weather = () => {
     const classes = useStyles();
     const weather = useSelector(state => state.weather)
     const dispatch = useDispatch()
+    const position = useSelector(state => state.position)
     useEffect(() => {
-        dispatch(fetchWeather())
-    }, [])
+        dispatch(fetchWeather(position))
+    })
 
-    if (weather) {
-        return (
-            <Box className={classes.root}>
-                <Grid container spacing={0} justify="space-evenly">
-                    <Grid item container justify="space-evenly" xs={12}>
-                        <Grid item xs={7}>
-                            <Grid item className={classes.title}>
-                                <Typography variant="h5">
-                                    {weather.main.location}
-                                </Typography>
-                                <Typography variant="subtitle1">
-                                    {weather.main.description}
-                                </Typography>
-                            </Grid>
-                            <Grid item className={classes.mainInfo} container direction="row">
-                                <div>
-                                    <img src={`./assets/weather_icons/${weather.main.icon}.svg`} width='100px' alt="Sun" />
-                                </div>
-                                <div className={classes.verticallyCentered}>
-                                    <Typography variant="h4">
-                                        {`${weather.main.temp} °C`}
+    if (position) {
+        if (weather) {
+            return (
+                <Box className={classes.root}>
+                    <Grid container spacing={0} justify="space-evenly">
+                        <Grid item container justify="space-evenly" xs={12}>
+                            <Grid item xs={7}>
+                                <Grid item className={classes.title}>
+                                    <Typography variant="h5">
+                                        {weather.main.location}
                                     </Typography>
-                                </div>
+                                    <Typography variant="subtitle1">
+                                        {weather.main.description}
+                                    </Typography>
+                                </Grid>
+                                <Grid item className={classes.mainInfo} container direction="row">
+                                    <div>
+                                        <img src={`./assets/weather_icons/${weather.main.icon}.svg`} width='100px' alt="Sun" />
+                                    </div>
+                                    <div className={classes.verticallyCentered}>
+                                        <Typography variant="h4">
+                                            {`${weather.main.temp} °C`}
+                                        </Typography>
+                                    </div>
+                                </Grid>
+                            </Grid>
+                            <Grid item xs={5} className={classes.detailInfo}>
+                                <Typography variant="subtitle1">
+                                    <p>{`Humidity: ${weather.details.humidity}%`}</p>
+                                    <p>{`Cloudness: ${weather.details.cloudiness}%`}</p>
+                                    <p>{`Wind: ${weather.details.wind} m/sec`}</p>
+                                </Typography>
                             </Grid>
                         </Grid>
-                        <Grid item xs={5} className={classes.detailInfo}>
-                            <Typography variant="subtitle1">
-                                <p>{`Humidity: ${weather.details.humidity}%`}</p>
-                                <p>{`Cloudness: ${weather.details.cloudiness}%`}</p>
-                                <p>{`Wind: ${weather.details.wind} m/sec`}</p>
-                            </Typography>
+                        <Grid item container direction="row" justify="space-evenly" className={classes.tempDetails}>
+                            <Grid>
+                                <Typography variant="overline" display="block" gutterBottom>
+                                    {`Min ${weather.temperature.min} °C`}
+                                </Typography>
+                            </Grid>
+                            <Grid>
+                                <Typography variant="overline" display="block" gutterBottom>
+                                    {`Max ${weather.temperature.max} °C`}
+                                </Typography>
+                            </Grid>
+                            <Grid>
+                                <Typography variant="overline" display="block" gutterBottom>
+                                    {`Feels like ${weather.temperature.feelsLike} °C`}
+                                </Typography>
+                            </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item container direction="row" justify="space-evenly" className={classes.tempDetails}>
-                        <Grid>
-                            <Typography variant="overline" display="block" gutterBottom>
-                                {`Min ${weather.temperature.min} °C`}
-                            </Typography>
-                        </Grid>
-                        <Grid>
-                            <Typography variant="overline" display="block" gutterBottom>
-                                {`Max ${weather.temperature.max} °C`}
-                            </Typography>
-                        </Grid>
-                        <Grid>
-                            <Typography variant="overline" display="block" gutterBottom>
-                                {`Feels like ${weather.temperature.feelsLike} °C`}
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Box>
-        );
+                </Box>
+            );
+        } else {
+            return (
+                <div>Loading weather...</div>
+            )
+        }
     } else {
         return (
-            <div>Loading...</div>
+            <div>Waiting for geolocation permission...</div>
         )
     }
 };

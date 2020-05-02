@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
 import Weather from './widgets/weather';
+import { getPosition } from '../actions/index'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,8 +28,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function App() {
+  const position = useSelector(state => state.position)
   const classes = useStyles();
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getPosition());
+  }, []);
 
+  if(position) {
   return (
     <div className={classes.root}>
       <Container className={classes.container}>
@@ -41,4 +49,7 @@ export default function App() {
       </Container>
     </div>
   );
+  } else {
+    return null;
+  }
 }

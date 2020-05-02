@@ -6,8 +6,6 @@ import MainInfo from '../models/weather/mainInfo';
 import TemperatureDetails from '../models/weather/temperature';
 import WeatherDetails from '../models/weather/details'
 import WeatherData from '../models/weather/weatherInfo'
-import { indigo } from '@material-ui/core/colors';
-
 
 export default (state = null, action) => {
     switch (action.type) {
@@ -32,7 +30,7 @@ function parseWeatherPayload(payload: any) {
     return new WeatherData(mainInfo, temperature, details)
 }
 
-function findWatherIcon(id) {
+function findWatherIcon(id: number) {
     if (id >= 200 && id < 300) return "200" // tunderstorm
     if (id >= 300 && id < 400) return "300" // drizzle
     if (id >= 500 && id < 600) return "500"; // rain
