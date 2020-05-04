@@ -5,8 +5,7 @@ import { FETCH_WEATHER, GET_POSITION } from './types'
 export const fetchWeather = (position) => async dispatch => {
     const params = {
         lat: position.lat,
-        log: position.lon,
-        //q: 'Brussels,BE',
+        lon: position.lon,
         units: 'metric',
         appid: '5ab21a7d11964ffa58b9f5966a91f6c6'
     }
@@ -22,4 +21,4 @@ export const getPosition = () => async dispatch => {
         console.log(err);
         return;
     })
-};ł
+};
