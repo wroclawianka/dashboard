@@ -47,8 +47,8 @@ const WeatherDetails = () => {
                                 </Typography></Grid>
                             <Grid>------- INPUT ------</Grid>
                         </Grid>
-                        <Grid container justify="space-evenly" direction="row">
-                            <Grid className={classes.mainInfo}>
+                        <Grid container justify="space-evenly" direction="row" item xs={12}>
+                            <Grid className={classes.mainInfo} item xs={7}>
                                 <Grid>
                                     <Typography variant="subtitle1">
                                         {weather.main.description}
@@ -71,7 +71,7 @@ const WeatherDetails = () => {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid className={classes.detailInfo}>
+                            <Grid className={classes.detailInfo} item xs={5}>
                                 <Typography variant="subtitle2">
                                     <div>Humidity:</div>
                                     <div className={classes.bold}>{`${weather.details.humidity}%`}</div>
