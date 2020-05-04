@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {
     FETCH_WEATHER
 } from "../actions/types";
