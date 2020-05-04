@@ -18,21 +18,15 @@ const useStyles = makeStyles(() =>
             textAlign: 'left',
         },
         detailInfo: {
-            textAlign: 'left',
+            textAlign: 'center',
             margin: 'auto',
-        },
-        tempDetails: {
-            borderTop: '1px solid #d0d0d0',
-            marginTop: '10px',
-            paddingTop: '10px',
         },
         verticallyCentered: {
             margin: 'auto 0',
             textAlign: 'center',
         },
-        feelsLike: {
-            fontSize: '0.70rem',
-            lineHeight: '1.5',
+        bold: {
+            fontWeight: 600,
         }
     }),
 );
@@ -70,18 +64,21 @@ const WeatherDetails = () => {
                                         <Typography variant="h4">
                                             {`${weather.main.temp} °C`}
                                         </Typography>
-                                        <Typography variant="overline" display="block" gutterBottom className={classes.feelsLike}>
-                                            <div>Feels like</div>
+                                        <Typography variant="subtitle2" display="block" gutterBottom>
+                                            <div>Feels like:</div>
                                             <div>{`${weather.temperature.feelsLike} °C`}</div>
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </Grid>
                             <Grid className={classes.detailInfo}>
-                                <Typography variant="subtitle1">
-                                    <p>Humidity:{`${weather.details.humidity}%`}</p>
-                                    <p>Cloudness: {`${weather.details.cloudiness}%`}</p>
-                                    <p>Wind: {`${weather.details.wind} m/sec`}</p>
+                                <Typography variant="subtitle2">
+                                    <div>Humidity:</div>
+                                    <div className={classes.bold}>{`${weather.details.humidity}%`}</div>
+                                    <div>Cloudness:</div>
+                                    <div className={classes.bold}>{`${weather.details.cloudiness}%`}</div>
+                                    <div>Wind:</div>
+                                    <div className={classes.bold}>{`${weather.details.wind} m/sec`}</div>
                                 </Typography>
                             </Grid>
                         </Grid>
