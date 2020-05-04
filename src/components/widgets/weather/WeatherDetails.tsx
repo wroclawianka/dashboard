@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-
+import React from 'react';
+import { useSelector } from 'react-redux'
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+
+import LocationInput from './LocationInput'
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -13,6 +15,9 @@ const useStyles = makeStyles(() =>
         },
         title: {
             textAlign: 'left',
+        },
+        locationInput: {
+            paddingBottom: '5px'
         },
         mainInfo: {
             textAlign: 'left',
@@ -27,7 +32,7 @@ const useStyles = makeStyles(() =>
         },
         bold: {
             fontWeight: 600,
-        }
+        },
     }),
 );
 
@@ -45,7 +50,9 @@ const WeatherDetails = () => {
                                 <Typography variant="h5">
                                     {weather.main.location}
                                 </Typography></Grid>
-                            <Grid>------- INPUT ------</Grid>
+                            {/* <Grid className={classes.locationInput}>
+                                <LocationInput></LocationInput>
+                            </Grid> */}
                         </Grid>
                         <Grid container justify="space-evenly" direction="row" item xs={12}>
                             <Grid className={classes.mainInfo} item xs={7}>
