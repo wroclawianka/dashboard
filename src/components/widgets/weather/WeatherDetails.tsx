@@ -61,7 +61,7 @@ const WeatherDetails = () => {
                                         {weather.main.description}
                                     </Typography>
                                 </Grid>
-                                <Grid container justify="space-evenly" direction="row">
+                                <Grid container justify="center" direction="row">
                                     <Grid>
                                         <div>
                                             <img src={`./dashboard/assets/weather_icons/${weather.main.icon}.svg`} width='100px' alt="Sun" />
