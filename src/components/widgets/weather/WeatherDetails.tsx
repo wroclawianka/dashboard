@@ -1,16 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-
 import LocationInput from './LocationInput'
 
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
+            maxWidth: '380px',
+            margin: '0 auto',
             color: '#02005c',
         },
         title: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles(() =>
 
 const WeatherDetails = () => {
     const classes = useStyles();
-    const weather = useSelector(state => state.weather)
+    const weather = useSelector(state => state.weather);
 
     if (weather) {
         return (
@@ -50,9 +50,9 @@ const WeatherDetails = () => {
                                 <Typography variant="h5">
                                     {weather.main.location}
                                 </Typography></Grid>
-                            {/* <Grid className={classes.locationInput}>
-                                <LocationInput></LocationInput>
-                            </Grid> */}
+                             <Grid className={classes.locationInput}>
+                                <LocationInput/>
+                            </Grid>
                         </Grid>
                         <Grid container justify="space-evenly" direction="row" item xs={12}>
                             <Grid className={classes.mainInfo} item xs={7}>
@@ -64,7 +64,7 @@ const WeatherDetails = () => {
                                 <Grid container justify="space-evenly" direction="row">
                                     <Grid>
                                         <div>
-                                            <img src={`./assets/weather_icons/${weather.main.icon}.svg`} width='100px' alt="Sun" />
+                                            <img src={`./dashboard/assets/weather_icons/${weather.main.icon}.svg`} width='100px' alt="Sun" />
                                         </div>
                                     </Grid>
                                     <Grid className={classes.verticallyCentered}>
@@ -82,7 +82,7 @@ const WeatherDetails = () => {
                                 <Typography variant="subtitle2">
                                     <div>Humidity:</div>
                                     <div className={classes.bold}>{`${weather.details.humidity}%`}</div>
-                                    <div>Cloudness:</div>
+                                    <div>Cloudiness:</div>
                                     <div className={classes.bold}>{`${weather.details.cloudiness}%`}</div>
                                     <div>Wind:</div>
                                     <div className={classes.bold}>{`${weather.details.wind} m/sec`}</div>
