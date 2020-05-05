@@ -28,11 +28,11 @@ const LocationInput = () => {
 
     const handleChange = (event) => {
         setLocation(event.target.value)
-
     };
 
     const handleSubmit = (event) => {
         dispatch(fetchWeather({q: location}));
+        setLocation('');
         event.preventDefault();
     };
 
@@ -40,6 +40,7 @@ const LocationInput = () => {
         <InputBase
             type="text"
             placeholder="Change location..."
+            value={location}
             onChange={handleChange}
         />
     </form>
