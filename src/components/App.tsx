@@ -40,7 +40,7 @@ export default function App() {
     <div className={classes.root}>
       <Container className={classes.container}>
         <Grid container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item xs={5}>
             <Paper className={classes.paper}>
               <WeatherPanel/>
             </Paper>
