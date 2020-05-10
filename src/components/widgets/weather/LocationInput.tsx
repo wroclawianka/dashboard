@@ -20,10 +20,11 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const LocationInput = () => {
+const LocationInput = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [location, setLocation] = useState('');
+    const setEditMode = (value) => props.setEditMode(value)
 
 
     const handleChange = (event) => {
@@ -34,6 +35,8 @@ const LocationInput = () => {
         dispatch(fetchWeather({q: location}));
         setLocation('');
         event.preventDefault();
+        setEditMode(false);
+
     };
 
     return <form className={classes.root} onSubmit={handleSubmit}>

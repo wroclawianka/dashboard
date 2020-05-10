@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux'
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LocationInput from './LocationInput'
+import Edit from '@material-ui/icons/Edit'
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -15,6 +16,13 @@ const useStyles = makeStyles(() =>
         },
         title: {
             textAlign: 'left',
+        },
+        editIcon: {
+            paddingLeft: '5px',
+            color: '#a2a2a2',
+            "&:hover, &:focus": {
+                color: 'inherit',
+            },
         },
         locationInput: {
             paddingBottom: '5px'
@@ -39,6 +47,7 @@ const useStyles = makeStyles(() =>
 const WeatherDetails = () => {
     const classes = useStyles();
     const weather = useSelector(state => state.weather);
+    const [editMode, setEditMode] = useState(false);
 
     if (weather) {
         return (
@@ -49,9 +58,16 @@ const WeatherDetails = () => {
                             <Grid className={classes.title}>
                                 <Typography variant="h5">
                                     {weather.main.location}
-                                </Typography></Grid>
-                             <Grid className={classes.locationInput}>
-                                <LocationInput/>
+                                </Typography>
+                            </Grid>
+                            <Grid className={classes.locationInput}>
+                                {(editMode) ?
+                                    <LocationInput setEditMode={setEditMode} /> :
+                                    <Edit
+                                        className={classes.editIcon}
+                                        fontSize='small'
+                                        onClick={() => { setEditMode(true) }}
+                                    />}
                             </Grid>
                         </Grid>
                         <Grid container justify="space-evenly" direction="row" item xs={12}>
