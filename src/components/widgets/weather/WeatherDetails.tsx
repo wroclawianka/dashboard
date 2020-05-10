@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import LocationInput from './LocationInput'
 import Edit from '@material-ui/icons/Edit'
+import Clear from '@material-ui/icons/Clear'
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -16,17 +17,19 @@ const useStyles = makeStyles(() =>
         },
         title: {
             textAlign: 'left',
-            paddingBottom: '10px'
+            paddingBottom: '12px'
         },
         editIcon: {
             paddingLeft: '5px',
             color: '#a2a2a2',
+            paddingTop: '7px',
             "&:hover, &:focus": {
                 color: 'inherit',
             },
         },
         locationInput: {
-            paddingBottom: '5px'
+            paddingBottom: '5px',
+            display: 'flex',
         },
         mainInfo: {
             textAlign: 'left',
@@ -63,7 +66,14 @@ const WeatherDetails = () => {
                             </Grid>
                             <Grid className={classes.locationInput}>
                                 {(editMode) ?
-                                    <LocationInput setEditMode={setEditMode} /> :
+                                    <div className={classes.locationInput}>
+                                        <LocationInput setEditMode={setEditMode} />
+                                        <Clear
+                                        className={classes.editIcon}
+                                        fontSize='small'
+                                        onClick={() => { setEditMode(false) }}
+                                    />
+                                        </div> :
                                     <Edit
                                         className={classes.editIcon}
                                         fontSize='small'
