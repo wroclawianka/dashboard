@@ -1,16 +1,15 @@
+import { FETCH_WEATHER } from "../actions/types";
 import {
-    FETCH_WEATHER
-} from "../actions/types";
-import MainInfo from '../models/weather/mainInfo';
-import TemperatureDetails from '../models/weather/temperature';
-import WeatherDetails from '../models/weather/details'
-import WeatherData from '../models/weather/weatherInfo'
+    MainInfo,
+    Temperature,
+    Details,
+    WeatherInfo
+} from '../models/weather';
 
 export default (state = null, action) => {
     switch (action.type) {
         case FETCH_WEATHER:
             const data = parseWeatherPayload(action.payload);
-            console.log(data);
             return { ...data };
         default:
             return state;
@@ -24,9 +23,9 @@ function parseWeatherPayload(payload: any) {
     const description: string = (payload.weather && payload.weather[0]) ? payload.weather[0].main : "";
     const icon: string = findWatherIcon(payload.weather[0].id);
     const mainInfo = new MainInfo(location, description, main.temp, icon)
-    const temperature = new TemperatureDetails(main.temp_min, main.temp_min, main.feels_like);
-    const details = new WeatherDetails(main.humidity, payload.clouds.all, payload.wind.speed)
-    return new WeatherData(mainInfo, temperature, details)
+    const temperature = new Temperature(main.temp_min, main.temp_min, main.feels_like);
+    const details = new Details(main.humidity, payload.clouds.all, payload.wind.speed)
+    return new WeatherInfo(mainInfo, temperature, details)
 }
 
 function findWatherIcon(id: number) {

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import MyLocationIcon from '@material-ui/icons/MyLocation';
+import {fetchWeather} from "../../../actions";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -18,22 +20,32 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const LocationInput = () => {
+const LocationInput = (props) => {
     const classes = useStyles();
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        //TODO: set location and fetch data
+    const dispatch = useDispatch();
+    const [location, setLocation] = useState('');
+    const setEditMode = (value) => props.setEditMode(value)
+
+
+    const handleChange = (event) => {
+        setLocation(event.target.value)
     };
 
-    return <form className={classes.root}>
+    const handleSubmit = (event) => {
+        dispatch(fetchWeather({q: location}));
+        setLocation('');
+        event.preventDefault();
+        setEditMode(false);
+
+    };
+
+    return <form className={classes.root} onSubmit={handleSubmit}>
         <InputBase
-            placeholder="Location"
+            type="text"
+            placeholder="Change location..."
+            value={location}
+            onChange={handleChange}
         />
-        <IconButton
-            className={classes.iconButton}
-            aria-label="search"
-        >
-            <MyLocationIcon />
-        </IconButton>
     </form>
 };
 
