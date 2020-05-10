@@ -10,7 +10,6 @@ export default (state = null, action) => {
     switch (action.type) {
         case FETCH_WEATHER:
             const data = parseWeatherPayload(action.payload);
-            console.log(data);
             return { ...data };
         default:
             return state;
