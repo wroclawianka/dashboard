@@ -16,6 +16,7 @@ const useStyles = makeStyles(() =>
         },
         title: {
             textAlign: 'left',
+            paddingBottom: '10px'
         },
         editIcon: {
             paddingLeft: '5px',
