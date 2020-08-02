@@ -7,6 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
 
 import WeatherPanel from './widgets/weather/WeatherPanel'
+import NewsPanel from './widgets/news/NewsPanel'
+
 import { getPosition } from '../actions/index'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -44,7 +46,8 @@ export default function App() {
           <Grid container spacing={3}>
             <Grid item xs={5}>
               <Paper className={classes.paper}>
-                <WeatherPanel />
+                {/* <WeatherPanel /> */}
+                <NewsPanel />
               </Paper>
             </Grid>
           </Grid>
