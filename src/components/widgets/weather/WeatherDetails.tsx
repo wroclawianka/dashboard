@@ -10,6 +10,8 @@ import Clear from '@material-ui/icons/Clear'
 
 import LocationInput from './LocationInput'
 
+const url = "https://wroclawianka.github.io/dashboard";
+
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
@@ -107,7 +109,7 @@ const WeatherDetails = () => {
             <Grid>
                 <div>
                     <img
-                        src={`./dashboard/assets/weather_icons/${weather.main.icon}.svg`}
+                        src={`${url}/assets/weather_icons/${weather.main.icon}.svg`}
                         width='100px'
                         alt="Weather"
                     />
