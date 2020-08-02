@@ -28,9 +28,6 @@ const useStyles = makeStyles(() =>
                 textDecoration: 'underline',
             },
         },
-        source: {
-            color: '#a2a2a2'
-        },
     }),
 );
 
@@ -59,7 +56,7 @@ const NewsDetails = () => {
                 <a href={article.url} className={classes.link} target="_blank">
                     {parseArticleTitle(article.title, article.source)}
                 </a>
-                <span className={classes.source}>
+                <span>
                     {` ― ${article.source}`}
                 </span>
             </p>
