@@ -9,7 +9,14 @@ const NewsDetails = () => {
         return (
             <div>
                 {articles.map((el, i) => {
-                    return <li key={i}>{el.title}</li>
+                    return <div key={i}>
+                        <p>{el.title}</p>
+                        <p>Author: {el.author}</p>
+                        <p>
+                            <a href={el.url} target="_blank">{el.source}</a>
+                        </p>
+                        <hr />
+                    </div>
                 })}
             </div>
         );

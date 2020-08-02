@@ -46,7 +46,11 @@ export default function App() {
           <Grid container spacing={3}>
             <Grid item xs={5}>
               <Paper className={classes.paper}>
-                {/* <WeatherPanel /> */}
+                <WeatherPanel />
+              </Paper>
+            </Grid>
+            <Grid item xs={7}>
+              <Paper className={classes.paper}>
                 <NewsPanel />
               </Paper>
             </Grid>
